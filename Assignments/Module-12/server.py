@@ -50,13 +50,14 @@ def FindMe(c, addr):
         for i in final_list:
             if i == data:
                 index = final_list.index(i)
+                question = final_list[index+1]
+                answer = final_list[index+2]
+                c.send(str(question).encode())
+                user_answer = c.recv(1024).decode()
             else:
                 out = "Roll Number not found"
-                c.send(str(out).encode())
-        question = final_list[index+1]
-        answer = final_list[index+2]
-        c.send(str(question).encode())
-        user_answer = c.recv(1024).decode()
+                # c.send(str(out).encode())
+                print(out)
         if(answer == user_answer):
             c.send(str(option1).encode())
             connection = False
